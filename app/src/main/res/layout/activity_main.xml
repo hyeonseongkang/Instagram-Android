@@ -108,13 +108,17 @@
             android:layout_marginTop="7dp"/>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -136,9 +140,49 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/person1"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/person2"
+                android:layout_marginLeft="20dp"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/person3"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Liked by kenzoere and others"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="photosyean Good times. Great vibes."
+                android:layout_centerVertical="true"/>
 
 
-
+        </LinearLayout>
 
     </LinearLayout>
 
