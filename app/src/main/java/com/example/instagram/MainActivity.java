@@ -21,12 +21,17 @@ public class MainActivity extends AppCompatActivity {
     public static String TAG = "MainActivity";
 
     List<Bitmap> bitmap = new ArrayList<>();
+    List<Home> homeList = new ArrayList<>();
 
     private AppCompatButton plusButton, heartButton, chatButton;
 
     RecyclerView recyclerView;
     HomeAdapter homeAdapter;
     RecyclerView.LayoutManager layoutManager;
+
+    RecyclerView recyclerView2;
+    HomeAdapter2 homeAdapter2;
+    RecyclerView.LayoutManager layoutManager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +85,29 @@ public class MainActivity extends AppCompatActivity {
         bitmap.add(bitmap9);
         bitmap.add(bitmap10);
 
+
+
         homeAdapter = new HomeAdapter(bitmap);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setAdapter(homeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+        homeList.add(new Home(bitmap1, bitmap1, "test1", "textView1-1", "textView2"));
+        homeList.add(new Home(bitmap2, bitmap2, "test2", "textView1-2", "textView2"));
+        homeList.add(new Home(bitmap3, bitmap3, "test3", "textView1-3", "textView2"));
+        homeList.add(new Home(bitmap4, bitmap4, "test4", "textView1-4", "textView2"));
+        homeList.add(new Home(bitmap5, bitmap5, "test5", "textView1-5", "textView2"));
+        homeList.add(new Home(bitmap6, bitmap6, "test6", "textView1-6", "textView2"));
+        homeList.add(new Home(bitmap7, bitmap7, "test7", "textView1-7", "textView2"));
+        homeList.add(new Home(bitmap8, bitmap8, "test8", "textView1-8", "textView2"));
+        homeList.add(new Home(bitmap9, bitmap9, "test9", "textView1-9", "textView2"));
+        homeList.add(new Home(bitmap10, bitmap10, "test10", "textView1-10", "textView2"));
+
+
+        homeAdapter2 = new HomeAdapter2(homeList);
+        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView2);
+        recyclerView2.setAdapter(homeAdapter2);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }
