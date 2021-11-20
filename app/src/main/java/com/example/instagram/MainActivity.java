@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +105,16 @@ public class MainActivity extends AppCompatActivity {
         homeList.add(new Home(bitmap10, bitmap10, "test10", "textView1-10", "textView2"));
 
 
-        homeAdapter2 = new HomeAdapter2(homeList);
+        homeAdapter2 = new HomeAdapter2(homeList, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Object obj = v.getTag();
+                if (obj != null) {
+                    int position = (int) obj;
+                    Toast.makeText(MainActivity.this, homeList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView2);
         recyclerView2.setAdapter(homeAdapter2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));

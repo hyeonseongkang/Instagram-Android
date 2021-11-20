@@ -14,6 +14,7 @@ import java.util.List;
 public class HomeAdapter2 extends RecyclerView.Adapter<HomeAdapter2.ViewHolder> {
 
     private List<Home> homeList;
+    static public View.OnClickListener onClick;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -21,18 +22,22 @@ public class HomeAdapter2 extends RecyclerView.Adapter<HomeAdapter2.ViewHolder> 
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        View view;
         ImageView imageView, profile;
         TextView name, textView1, textView2;
 
-        public ViewHolder(View view) {
-            super(view);
+        public ViewHolder(View v) {
+            super(v);
             // Define click listener for the ViewHolder's View
 
-            imageView = (ImageView) view.findViewById(R.id.imageView);
-            profile = (ImageView) view.findViewById(R.id.profile);
-            name = (TextView) view.findViewById(R.id.name);
-            textView1 = (TextView) view.findViewById(R.id.textView1);
-            textView2 = (TextView) view.findViewById(R.id.textView2);
+            imageView = (ImageView) v.findViewById(R.id.imageView);
+            profile = (ImageView) v.findViewById(R.id.profile);
+            name = (TextView) v.findViewById(R.id.name);
+            textView1 = (TextView) v.findViewById(R.id.textView1);
+            textView2 = (TextView) v.findViewById(R.id.textView2);
+
+            view = v;
+            view.setOnClickListener(onClick);
         }
 
 
@@ -44,8 +49,9 @@ public class HomeAdapter2 extends RecyclerView.Adapter<HomeAdapter2.ViewHolder> 
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public HomeAdapter2(List<Home> dataSet) {
+    public HomeAdapter2(List<Home> dataSet, View.OnClickListener listener) {
         homeList = dataSet;
+        onClick = listener;
     }
 
     // Create new views (invoked by the layout manager)
@@ -64,6 +70,7 @@ public class HomeAdapter2 extends RecyclerView.Adapter<HomeAdapter2.ViewHolder> 
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+        viewHolder.view.setTag(position);
         viewHolder.imageView.setImageBitmap(homeList.get(position).getImageView());
         viewHolder.profile.setImageBitmap(homeList.get(position).getProfile());
         viewHolder.name.setText(homeList.get(position).getName());
