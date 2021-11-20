@@ -14,6 +14,7 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     private List<Bitmap> bitmapList;
+    static public View.OnClickListener onClick;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -23,11 +24,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         ImageView imageView;
 
-        public ViewHolder(View view) {
-            super(view);
+        View view;
+        public ViewHolder(View v) {
+            super(v);
             // Define click listener for the ViewHolder's View
 
-            imageView = (ImageView) view.findViewById(R.id.imageView);
+            imageView = (ImageView) v.findViewById(R.id.imageView);
+
+            view = v;
+            view.setOnClickListener(onClick);
         }
 
 
@@ -39,8 +44,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public HomeAdapter(List<Bitmap> dataSet) {
+    public HomeAdapter(List<Bitmap> dataSet, View.OnClickListener listener) {
         bitmapList = dataSet;
+        onClick = listener;
     }
 
     // Create new views (invoked by the layout manager)
@@ -59,6 +65,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+        viewHolder.view.setTag(position);
         viewHolder.imageView.setImageBitmap(bitmapList.get(position));
     }
 

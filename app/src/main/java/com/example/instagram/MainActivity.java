@@ -87,8 +87,16 @@ public class MainActivity extends AppCompatActivity {
         bitmap.add(bitmap10);
 
 
-
-        homeAdapter = new HomeAdapter(bitmap);
+        homeAdapter = new HomeAdapter(bitmap, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Object obj = v.getTag();
+                if (obj != null) {
+                    int position = (int) obj;
+                    Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setAdapter(homeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
