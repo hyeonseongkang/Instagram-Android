@@ -1,18 +1,27 @@
 package com.example.instagram;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,111 +30,79 @@ public class MainActivity extends AppCompatActivity {
 
     public static String TAG = "MainActivity";
 
-    List<Bitmap> bitmap = new ArrayList<>();
-    List<Home> homeList = new ArrayList<>();
+    private BottomNavigationView bottomNavigationView;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
-    private AppCompatButton plusButton, heartButton, chatButton;
-
-    RecyclerView recyclerView;
-    HomeAdapter homeAdapter;
-    RecyclerView.LayoutManager layoutManager;
-
-    RecyclerView recyclerView2;
-    HomeAdapter2 homeAdapter2;
-    RecyclerView.LayoutManager layoutManager2;
+    private Fragment1 fragment1;
+    private Fragment2 fragment2;
+    private Fragment3 fragment3;
+    private Fragment4 fragment4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        plusButton = (AppCompatButton) findViewById(R.id.plusButton);
-        heartButton = (AppCompatButton) findViewById(R.id.heartButton);
-        chatButton = (AppCompatButton) findViewById(R.id.chatButton);
 
-        plusButton.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Log.d(TAG, "plusButton");
-            }
-        });
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id) {
+                    case R.id.friendslist:
+                        setFrag(0);
+                        break;
+                    case R.id.chatting:
 
-        heartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "heatButton");
-            }
-        });
+                        setFrag(1);
+                        break;
 
-        chatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "chatButton");
-            }
-        });
+                    case R.id.sharp:
+                        setFrag(2);
+                        break;
 
-        Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.person1);
-        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.person2);
-        Bitmap bitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.person3);
-        Bitmap bitmap4 = BitmapFactory.decodeResource(getResources(), R.drawable.person4);
-        Bitmap bitmap5 = BitmapFactory.decodeResource(getResources(), R.drawable.person5);
-        Bitmap bitmap6 = BitmapFactory.decodeResource(getResources(), R.drawable.person1);
-        Bitmap bitmap7 = BitmapFactory.decodeResource(getResources(), R.drawable.person2);
-        Bitmap bitmap8 = BitmapFactory.decodeResource(getResources(), R.drawable.person3);
-        Bitmap bitmap9 = BitmapFactory.decodeResource(getResources(), R.drawable.person4);
-        Bitmap bitmap10 = BitmapFactory.decodeResource(getResources(), R.drawable.person5);
+                    case R.id.setting:
+                        setFrag(3);
+                        break;
 
-        bitmap.add(bitmap1);
-        bitmap.add(bitmap2);
-        bitmap.add(bitmap3);
-        bitmap.add(bitmap4);
-        bitmap.add(bitmap5);
-        bitmap.add(bitmap6);
-        bitmap.add(bitmap7);
-        bitmap.add(bitmap8);
-        bitmap.add(bitmap9);
-        bitmap.add(bitmap10);
-
-
-        homeAdapter = new HomeAdapter(bitmap, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Object obj = v.getTag();
-                if (obj != null) {
-                    int position = (int) obj;
-                    Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
                 }
+                return true;
             }
         });
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setAdapter(homeAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-
-        homeList.add(new Home(bitmap1, bitmap1, "test1", "textView1-1", "textView2"));
-        homeList.add(new Home(bitmap2, bitmap2, "test2", "textView1-2", "textView2"));
-        homeList.add(new Home(bitmap3, bitmap3, "test3", "textView1-3", "textView2"));
-        homeList.add(new Home(bitmap4, bitmap4, "test4", "textView1-4", "textView2"));
-        homeList.add(new Home(bitmap5, bitmap5, "test5", "textView1-5", "textView2"));
-        homeList.add(new Home(bitmap6, bitmap6, "test6", "textView1-6", "textView2"));
-        homeList.add(new Home(bitmap7, bitmap7, "test7", "textView1-7", "textView2"));
-        homeList.add(new Home(bitmap8, bitmap8, "test8", "textView1-8", "textView2"));
-        homeList.add(new Home(bitmap9, bitmap9, "test9", "textView1-9", "textView2"));
-        homeList.add(new Home(bitmap10, bitmap10, "test10", "textView1-10", "textView2"));
+        fragment1 = new Fragment1();
+        fragment2 = new Fragment2();
+        fragment3 = new Fragment3();
+        fragment4 = new Fragment4();
 
 
-        homeAdapter2 = new HomeAdapter2(homeList, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Object obj = v.getTag();
-                if (obj != null) {
-                    int position = (int) obj;
-                    Toast.makeText(MainActivity.this, homeList.get(position).getName(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView2);
-        recyclerView2.setAdapter(homeAdapter2);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
 
+        setFrag(0);
+    }
+
+
+    private void setFrag(int n) {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        switch(n) {
+            case 0:
+                fragmentTransaction.replace(R.id.frame, fragment1);
+                fragmentTransaction.commit();
+                break;
+            case 1:
+                fragmentTransaction.replace(R.id.frame, fragment2);
+                fragmentTransaction.commit();
+                break;
+            case 2:
+                fragmentTransaction.replace(R.id.frame, fragment3);
+                fragmentTransaction.commit();
+                break;
+            case 3:
+                fragmentTransaction.replace(R.id.frame, fragment4);
+                fragmentTransaction.commit();
+                break;
+        }
     }
 }
