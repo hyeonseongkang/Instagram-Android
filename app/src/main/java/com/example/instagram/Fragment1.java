@@ -1,16 +1,20 @@
 package com.example.instagram;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.badge.BadgeDrawable;
@@ -20,6 +24,7 @@ import java.util.List;
 
 public class Fragment1 extends Fragment {
 
+    public static String TAG = "Fragment1";
     private View v;
 
 
@@ -43,10 +48,9 @@ public class Fragment1 extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_1, container, false);
 
-        /*
-            plusButton = (AppCompatButton) findViewById(R.id.plusButton);
-        heartButton = (AppCompatButton) findViewById(R.id.heartButton);
-        chatButton = (AppCompatButton) findViewById(R.id.chatButton);
+        plusButton = (AppCompatButton) v.findViewById(R.id.plusButton);
+        heartButton = (AppCompatButton) v.findViewById(R.id.heartButton);
+        chatButton = (AppCompatButton) v.findViewById(R.id.chatButton);
 
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,13 +102,13 @@ public class Fragment1 extends Fragment {
                 Object obj = v.getTag();
                 if (obj != null) {
                     int position = (int) obj;
-                    Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(homeAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
         homeList.add(new Home(bitmap1, bitmap1, "test1", "textView1-1", "textView2"));
         homeList.add(new Home(bitmap2, bitmap2, "test2", "textView1-2", "textView2"));
@@ -124,14 +128,14 @@ public class Fragment1 extends Fragment {
                 Object obj = v.getTag();
                 if (obj != null) {
                     int position = (int) obj;
-                    Toast.makeText(MainActivity.this, homeList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), homeList.get(position).getName(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView2);
+        recyclerView2 = (RecyclerView) v.findViewById(R.id.recyclerView2);
         recyclerView2.setAdapter(homeAdapter2);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-         */
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
         return v;
     }
