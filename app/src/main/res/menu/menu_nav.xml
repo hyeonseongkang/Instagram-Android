@@ -2,22 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/friendslist"
+        android:id="@+id/home"
         android:title="@null"
-        android:icon="@drawable/friend"/>
+        android:icon="@drawable/bottom_home"/>
+    <item
+        android:id="@+id/search"
+        android:title="@null"
+        android:icon="@drawable/bottom_search"/>
 
     <item
-        android:id="@+id/chatting"
-        android:icon="@drawable/chat"
+        android:id="@+id/movie"
+        android:icon="@drawable/bottom_movie"
         android:title="@null" />
 
     <item
-        android:id="@+id/sharp"
+        android:id="@+id/bag"
         android:title=""
-        android:icon="@drawable/news"/>
+        android:icon="@drawable/bottom_bag"/>
 
     <item
-        android:id="@+id/setting"
+        android:id="@+id/user"
         android:title=""
-        android:icon="@drawable/setting"/>
+        android:icon="@drawable/bottom_user"/>
 </menu>

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment2 fragment2;
     private Fragment3 fragment3;
     private Fragment4 fragment4;
+    private Fragment5 fragment5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,22 +52,25 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch(id) {
-                    case R.id.friendslist:
+                    case R.id.home:
                         setFrag(0);
                         break;
-                    case R.id.chatting:
+                    case R.id.search:
 
                         setFrag(1);
                         break;
 
-                    case R.id.sharp:
+                    case R.id.movie:
                         setFrag(2);
                         break;
 
-                    case R.id.setting:
+                    case R.id.bag:
                         setFrag(3);
                         break;
 
+                    case R.id.user:
+                        setFrag(4);
+                        break;
                 }
                 return true;
             }
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         fragment2 = new Fragment2();
         fragment3 = new Fragment3();
         fragment4 = new Fragment4();
-
+        fragment5 = new Fragment5();
 
 
         setFrag(0);
@@ -101,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 3:
                 fragmentTransaction.replace(R.id.frame, fragment4);
+                fragmentTransaction.commit();
+                break;
+            case 4:
+                fragmentTransaction.replace(R.id.frame, fragment5);
                 fragmentTransaction.commit();
                 break;
         }
