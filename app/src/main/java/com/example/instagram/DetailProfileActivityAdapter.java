@@ -18,8 +18,6 @@ public class DetailProfileActivityAdapter extends RecyclerView.Adapter<DetailPro
 
     List<Bitmap> item;
     static public View.OnClickListener onClick;
-    String key;
-
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -32,11 +30,13 @@ public class DetailProfileActivityAdapter extends RecyclerView.Adapter<DetailPro
             imageView = v.findViewById(R.id.imageView);
 
             rootView = v;
+            rootView.setOnClickListener(onClick);
         }
     }
 
-    public DetailProfileActivityAdapter(List<Bitmap> myDataset) {
+    public DetailProfileActivityAdapter(List<Bitmap> myDataset, View.OnClickListener onClick) {
         item = myDataset;
+        this.onClick = onClick;
     }
     @Override
     public DetailProfileActivityAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
@@ -51,6 +51,7 @@ public class DetailProfileActivityAdapter extends RecyclerView.Adapter<DetailPro
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        holder.rootView.setTag(position);
         holder.imageView.setImageBitmap(item.get(position));
         //holder.count.setText((position + 1));
 

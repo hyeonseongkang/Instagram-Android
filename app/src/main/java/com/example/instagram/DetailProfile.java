@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -54,7 +56,16 @@ public class DetailProfile extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new DetailProfileActivityAdapter(list);
+        adapter = new DetailProfileActivityAdapter(list, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Object obj = v.getTag();
+                if (obj != null) {
+                    int position = (int) obj;
+                    Toast.makeText(DetailProfile.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 }
