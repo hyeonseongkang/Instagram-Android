@@ -4,23 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailProfile extends AppCompatActivity {
+public class DetailProfileActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DetailProfileActivityAdapter adapter;
     GridLayoutManager layoutManager;
 
     private List<Bitmap> list = new ArrayList<>();
+
+    public static Bitmap clickImage;
 
 
     @Override
@@ -62,7 +64,11 @@ public class DetailProfile extends AppCompatActivity {
                 Object obj = v.getTag();
                 if (obj != null) {
                     int position = (int) obj;
-                    Toast.makeText(DetailProfile.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailProfileActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    clickImage = list.get(position);
+                    Intent intent = new Intent(DetailProfileActivity.this, DetailProfileImageActivity.class);
+                    startActivity(intent);
+
                 }
             }
         });
