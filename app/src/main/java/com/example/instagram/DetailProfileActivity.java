@@ -65,9 +65,12 @@ public class DetailProfileActivity extends AppCompatActivity {
                 if (obj != null) {
                     int position = (int) obj;
                     Toast.makeText(DetailProfileActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    clickImage = null;
                     clickImage = list.get(position);
-                    Intent intent = new Intent(DetailProfileActivity.this, DetailProfileImageActivity.class);
-                    startActivity(intent);
+                    if (clickImage != null) {
+                        Intent intent = new Intent(DetailProfileActivity.this, DetailProfileImageActivity.class);
+                        startActivity(intent);
+                    }
 
                 }
             }
