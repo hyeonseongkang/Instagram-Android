@@ -1,5 +1,6 @@
 package com.example.instagram;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -103,6 +104,8 @@ public class Fragment1 extends Fragment {
                 if (obj != null) {
                     int position = (int) obj;
                     Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), DetailProfileActivity.class);
+                    startActivity(intent);
                 }
             }
         });
