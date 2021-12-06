@@ -25,7 +25,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp">
 
-                <ImageButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/backButton"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -43,11 +43,11 @@
                     android:fontFamily="@font/gmm"
                     android:layout_centerInParent="true" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/menuButton"
-                    android:layout_width="20dp"
+                    android:layout_width="25dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/setting"
+                    android:background="@drawable/setting"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>

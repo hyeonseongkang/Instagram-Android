@@ -1,6 +1,7 @@
 package com.example.instagram;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,7 @@ public class DetailProfileActivity extends AppCompatActivity {
     private List<Bitmap> list = new ArrayList<>();
 
     public static Bitmap clickImage;
-    private ImageButton backButton;
+    private AppCompatImageButton backButton, menuButton;
 
 
     @Override
@@ -55,13 +56,16 @@ public class DetailProfileActivity extends AppCompatActivity {
         list.add(bitmap9);
         list.add(bitmap10);
 
-        backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton = (AppCompatImageButton) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        menuButton = (AppCompatImageButton) findViewById(R.id.menuButton);
+        
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
