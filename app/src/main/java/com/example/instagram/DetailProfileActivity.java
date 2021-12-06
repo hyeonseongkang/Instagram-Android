@@ -18,6 +18,8 @@ import java.util.List;
 
 public class DetailProfileActivity extends AppCompatActivity {
 
+    
+    //GITHUB TEST
     RecyclerView recyclerView;
     DetailProfileActivityAdapter adapter;
     GridLayoutManager layoutManager;
@@ -65,7 +67,7 @@ public class DetailProfileActivity extends AppCompatActivity {
         });
 
         menuButton = (AppCompatImageButton) findViewById(R.id.menuButton);
-        
+
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
