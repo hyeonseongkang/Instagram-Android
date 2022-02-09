@@ -24,7 +24,7 @@
             android:layout_marginTop="15dp">
 
             <EditText
-                android:id="@+id/userEmail"
+                android:id="@+id/userId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="아이디"
@@ -63,7 +63,6 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-
             android:textColor="#ffffff"
             android:text="로그인"
             android:textSize="18dp"
